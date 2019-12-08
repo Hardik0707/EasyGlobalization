@@ -7,11 +7,12 @@ class Main ( wx.Frame ):
 	
 	def __init__( self, parent ):
 
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"EasyGlobalization (V1.0)", pos = wx.DefaultPosition, size = wx.Size( 350,400 ), style = (wx.DEFAULT_FRAME_STYLE^wx.RESIZE_BORDER^wx.MAXIMIZE_BOX)|wx.CAPTION| wx.MINIMIZE_BOX|wx.CLOSE_BOX )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"EasyGlobalization v1.0", pos = wx.DefaultPosition, size = wx.Size( 350,400 ), style = (wx.DEFAULT_FRAME_STYLE^wx.RESIZE_BORDER^wx.MAXIMIZE_BOX)|wx.CAPTION| wx.MINIMIZE_BOX|wx.CLOSE_BOX )
 		
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		self.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOWTEXT ) )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
+		self.SetIcon(wx.Icon("logo.png"))
 		
 		MainLayout = wx.BoxSizer( wx.VERTICAL )
 		
@@ -204,9 +205,9 @@ class Main ( wx.Frame ):
 		try:
 			xmltree = i19n.GenerateTranslatedFile(filepath=self.SelectedFile.Value,base_lang=self.BLChoice.GetStringSelection(),dest_lang=self.DLChoice.GetStringSelection())
 			xmltree.write(Newfilepath,encoding='utf-8',method='xml',xml_declaration=True)
-			wx.MessageBox('File Generated Successfully !\nLocation: '+ Newfilepath, 'Success', wx.OK | wx.ICON_INFORMATION)
+			wx.MessageBox('File Generated Successfully !\nLocation: '+Newfilepath, ' Success', wx.OK | wx.ICON_INFORMATION)
 		except:
-			wx.MessageBox('ERROR: Failed to Generate File.', 'Error', wx.OK | wx.ICON_ERROR)
+			wx.MessageBox('ERROR: Failed to Generate File.', ' Error', wx.OK | wx.ICON_ERROR)
 	
 	def FileGenerateOnMenuSelection( self, event ):
 		event.Skip()
