@@ -1,6 +1,6 @@
-
+import webbrowser
 import wx
-import EasyGlobalization as i19n
+import EasyGlobalization as EasyGlob
 
 class Main ( wx.Frame ):
 	
@@ -12,7 +12,9 @@ class Main ( wx.Frame ):
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		self.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOWTEXT ) )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
-		self.SetIcon(wx.Icon("logo.png"))
+		
+		# Logo for Application
+		# self.SetIcon(wx.Icon("logo.png"))
 		
 		MainLayout = wx.BoxSizer( wx.VERTICAL )
 		
@@ -30,7 +32,7 @@ class Main ( wx.Frame ):
 		ParamSelectors.Add( self.SelectFramework, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 		
 		
-		SelectFrameworkChoice = i19n.SelectFramework()
+		SelectFrameworkChoice = EasyGlob.SelectFramework()
 		self.SFChoice = wx.Choice( Options.GetStaticBox(), wx.ID_ANY, wx.Point( -1,-1 ), wx.Size( 150,-1 ), SelectFrameworkChoice, wx.CB_SORT )
 		self.SFChoice.SetSelection( 0 )
 		self.SFChoice.SetExtraStyle( wx.WS_EX_BLOCK_EVENTS )
@@ -45,8 +47,8 @@ class Main ( wx.Frame ):
 		
 		ParamSelectors.Add( self.BaseLanguage, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
 		
-		BaseLanguageChoice = i19n.SelectBaseLanguage()
-		self.BLChoice = wx.Choice( Options.GetStaticBox(), wx.ID_ANY, wx.Point( -1,-1 ), wx.Size( 150,-1 ), BaseLanguageChoice, wx.CB_SORT )
+		BaseLanguageChoice = EasyGlob.SelectBaseLanguage()
+		self.BLChoice = wx.Choice( Options.GetStaticBox(), wx.ID_ANY, wx.Point( -1,-1 ), wx.Size( 150,-1 ), BaseLanguageChoice)
 		self.BLChoice.SetSelection( 0 )
 		self.BLChoice.SetExtraStyle( wx.WS_EX_BLOCK_EVENTS )
 		self.BLChoice.SetToolTip( u"Select Base Language" )
@@ -61,7 +63,7 @@ class Main ( wx.Frame ):
 		
 		ParamSelectors.Add( self.DestinationLanguage, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
 		
-		DestinationLanguageChoice = i19n.SelectDestinationLanguage()
+		DestinationLanguageChoice = EasyGlob.SelectDestinationLanguage()
 		self.DLChoice = wx.Choice( Options.GetStaticBox(), wx.ID_ANY, wx.Point( -1,-1 ), wx.Size( 150,-1 ), DestinationLanguageChoice, wx.CB_SORT )
 		self.DLChoice.SetSelection(1)
 		self.DLChoice.SetExtraStyle( wx.WS_EX_BLOCK_EVENTS )
@@ -153,20 +155,20 @@ class Main ( wx.Frame ):
 		self.MenuBar.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 		self.MenuBar.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 		
-		self.FileMenu = wx.Menu()
-		self.FileSelectFile = wx.MenuItem( self.FileMenu, wx.ID_ANY, u"Select Resource File"+ u"\t" + u"Ctrl+O", wx.EmptyString, wx.ITEM_NORMAL )
-		self.FileMenu.Append( self.FileSelectFile )
+		# self.FileMenu = wx.Menu()
+		# self.FileSelectFile = wx.MenuItem( self.FileMenu, wx.ID_ANY, u"Select Resource File"+ u"\t" + u"Ctrl+O", wx.EmptyString, wx.ITEM_NORMAL )
+		# self.FileMenu.Append( self.FileSelectFile )
 		
-		self.FileGenerate = wx.MenuItem( self.FileMenu, wx.ID_ANY, u"Generate"+ u"\t" + u"F5", wx.EmptyString, wx.ITEM_NORMAL )
-		self.FileMenu.Append( self.FileGenerate )
-		self.FileGenerate.Enable( False )
+		# self.FileGenerate = wx.MenuItem( self.FileMenu, wx.ID_ANY, u"Generate"+ u"\t" + u"F5", wx.EmptyString, wx.ITEM_NORMAL )
+		# self.FileMenu.Append( self.FileGenerate )
+		# self.FileGenerate.Enable( False )
 		
-		self.FileMenu.AppendSeparator()
+		# self.FileMenu.AppendSeparator()
 		
-		self.FileExit = wx.MenuItem( self.FileMenu, wx.ID_ANY, u"Exit"+ u"\t" + u"Alt+F4", wx.EmptyString, wx.ITEM_NORMAL )
-		self.FileMenu.Append( self.FileExit )
+		# self.FileExit = wx.MenuItem( self.FileMenu, wx.ID_ANY, u"Exit"+ u"\t" + u"Alt+F4", wx.EmptyString, wx.ITEM_NORMAL )
+		# self.FileMenu.Append( self.FileExit )
 		
-		self.MenuBar.Append( self.FileMenu, u"File" ) 
+		# self.MenuBar.Append( self.FileMenu, u"File" ) 
 		
 		self.HelpMenu = wx.Menu()
 		self.HelpDocumentation = wx.MenuItem( self.HelpMenu, wx.ID_ANY, u"Online Documentation"+ u"\t" + u"F1", wx.EmptyString, wx.ITEM_NORMAL )
@@ -182,8 +184,11 @@ class Main ( wx.Frame ):
 		# Connect Events
 		self.BrowserFile.Bind( wx.EVT_BUTTON, self.BrowserFileOnButtonClick )
 		self.GenerateButton.Bind( wx.EVT_BUTTON, self.GenerateButtonOnButtonClick )
-		self.Bind( wx.EVT_MENU, self.FileGenerateOnMenuSelection, id = self.FileGenerate.GetId() )
-		self.Bind( wx.EVT_MENU, self.FileExitOnMenuSelection, id = self.FileExit.GetId() )
+		# self.Bind( wx.EVT_MENU, self.FileGenerateOnMenuSelection, id = self.FileGenerate.GetId() )
+		# self.Bind( wx.EVT_MENU, self.FileExitOnMenuSelection, id = self.FileExit.GetId() )
+
+		self.Bind( wx.EVT_MENU, self.HelpDocumentationOnMenuSelection, id = self.HelpDocumentation.GetId() )
+		self.Bind( wx.EVT_MENU, self.HelpViewSourceCodeOnMenuSelection, id = self.HelpViewSourceCode.GetId() )
 	
 	def __del__( self ):
 		pass
@@ -195,7 +200,7 @@ class Main ( wx.Frame ):
 		openFileDialog.ShowModal()
 		
 		self.SelectedFile.Value=openFileDialog.GetPath()
-		self.TCDestFileName.Value,self.TCDestFilePath.Value = i19n.GenerateNewFileDetails(openFileDialog.GetPath(),self.DLChoice.GetStringSelection())
+		self.TCDestFileName.Value,self.TCDestFilePath.Value = EasyGlob.GenerateNewFileDetails(openFileDialog.GetPath(),self.DLChoice.GetStringSelection())
 		
 		# print(self.TCDestFileName.Value,self.TCDestFilePath.GetValue())
 		openFileDialog.Destroy()
@@ -203,7 +208,7 @@ class Main ( wx.Frame ):
 	def GenerateButtonOnButtonClick( self, event ):
 		Newfilepath = self.TCDestFilePath.GetValue()+self.TCDestFileName.GetValue()
 		try:
-			xmltree = i19n.GenerateTranslatedFile(filepath=self.SelectedFile.Value,base_lang=self.BLChoice.GetStringSelection(),dest_lang=self.DLChoice.GetStringSelection())
+			xmltree = EasyGlob.GenerateTranslatedFile(filepath=self.SelectedFile.Value,base_lang=self.BLChoice.GetStringSelection(),dest_lang=self.DLChoice.GetStringSelection())
 			xmltree.write(Newfilepath,encoding='utf-8',method='xml',xml_declaration=True)
 			wx.MessageBox('File Generated Successfully !\nLocation: '+Newfilepath, ' Success', wx.OK | wx.ICON_INFORMATION)
 		except:
@@ -215,6 +220,12 @@ class Main ( wx.Frame ):
 	def FileExitOnMenuSelection( self, event ):
 		self.Destroy()
 		# event.Skip()
+
+	# Help Menu bar Event Functions
+	def HelpDocumentationOnMenuSelection(self,event):
+		webbrowser.open('https://github.com/Hardik0707/EasyGlobalization/blob/master/README.md')
+	def HelpViewSourceCodeOnMenuSelection(self,event):
+		webbrowser.open('https://github.com/Hardik0707/EasyGlobalization/tree/master/source%20code')
 
 app = wx.App()
 frame = Main(None)
