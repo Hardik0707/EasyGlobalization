@@ -1,2 +1,2 @@
 # EasyGlobalization
-Create a resource files in different languages with the help of base resource file. 
+Utility for creating a resource file in different languages with the help of base resource file. 
