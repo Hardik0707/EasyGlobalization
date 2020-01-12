@@ -4,6 +4,9 @@
 # EasyGlobalization
 Globalization is a process of designing applications intended for users of different languages across the Globe. Frameworks like ASP.Net, Java Struts or Java Spring provides an easy structure to create Resource file/Properties file for different languages but as a developer it is very difficult and time consuming activity, for languages other than local languages developer needs to translate it from one base  language to require language. EasyGlobalization is a tool for creating a resource file(for ASP.Net) in different languages with the help of one resource file.  
 
+### Download
+* Please Download latest Executable from [here](https://github.com/Hardik0707/EasyGlobalization/releases).
+
 ### Usage
 1. Download and run Executable file or main.py
 2. Select Framework (Right now I have made only for ASP.Net, For Struts/Spring stay tuned). 
